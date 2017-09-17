@@ -7,15 +7,15 @@ is_live=''
 is_die=''
 
 if [ -z "$local_name" ]; then
-    echo "args like:stg.adbert 172.31.4.247/fbg mysql,httpd"
+    echo "args like:stg.adbert 127.0.0.1/fbg mysql,httpd"
     exit 1
 fi
 if [ -z "$remote_url" ]; then
-    echo "args like:stg.adbert 172.31.4.247/fbg mysql,httpd"
+    echo "args like:stg.adbert 127.0.0.1/fbg mysql,httpd"
     exit 1
 fi
 if [ -z "$checks" ]; then
-    echo "args like:stg.adbert 172.31.4.247/fbg mysql,httpd"
+    echo "args like:stg.adbert 127.0.0.1/fbg mysql,httpd"
     exit 1
 fi
 
