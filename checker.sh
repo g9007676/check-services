@@ -1,5 +1,6 @@
 #!/bin/bash
-declare -a services=("redis" "mysql" "mongo" "httpd" "node")
+declare -a services=("redis" "mysql" "mongo" "httpd" "node" "elasticsearch")
+file_name=$0
 local_name=$1
 remote_url=$2
 checks=$3
@@ -43,7 +44,8 @@ done
 
 service_is_live() {
     local ret
-    ret="$(ps aux | grep $i | grep -v 'grep' | grep -v 'check-service.sh' | wc -l)";
+    ret="$(ps aux | grep $i | grep -v 'grep' | grep -v $file_name | wc -l)";
+    ps aux | grep $i | grep -v 'grep' | grep -v $file_name
     ret=$(($ret + 0));
     if [ $ret -gt 0 ]; then
         return 0;
@@ -63,4 +65,4 @@ for i in "${check_service[@]}"; do
 done
 data="server_name=$local_name&alive_services=$is_live&dead_services=$is_die"
 echo $data
-curl -X POST '$remote_url' --data "$data"
+curl -X POST "$remote_url" --data "$data"
